@@ -78,6 +78,4 @@ Contributions are welcome! Fork this repo, make improvements, and submit a pull 
 
 This project is licensed under the MIT License – feel free to use and modify.
 
-## 👨‍💻 Author
-
-“With Tourista, travel smarter, plan better, and explore endlessly.”
+## “With Tourista, travel smarter, plan better, and explore endlessly.”
