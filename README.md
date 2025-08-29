@@ -1,8 +1,8 @@
-#🌍 Tourista – Your Travel Companion
+## 🌍 Tourista – Your Travel Companion
 
 Tourista is a smart travel companion web application designed to simplify your journeys. It combines an interactive chatbot with an itinerary planner to help you explore destinations, plan trips, and manage your travels all in one place.
 
-#✨ Features
+## ✨ Features
 
 🤖 Chatbot Assistant – Get instant travel guidance and answers to common questions.
 
@@ -14,7 +14,7 @@ Tourista is a smart travel companion web application designed to simplify your j
 
 🌐 Web Interface – Built with HTML, PHP, and MySQL for easy deployment.
 
-#⚙️ Tech Stack
+## ⚙️ Tech Stack
 
 Frontend: HTML, CSS, JavaScript
 
@@ -26,7 +26,7 @@ IDE Recommended: Eclipse / VS Code / PhpStorm
 
 Optional AI Layer: Chatbot logic for user interactions
 
-#🚀 Getting Started
+##  🚀 Getting Started
 Prerequisites
 
 Install XAMPP
@@ -60,7 +60,7 @@ The Chatbot is accessible through the chatbot module.
 
 The Itinerary Planner is available via the trip planning section.
 
-#🔮 Future Enhancements
+## 🔮 Future Enhancements
 
 🌦️ Real-time weather integration
 
@@ -74,10 +74,10 @@ The Itinerary Planner is available via the trip planning section.
 
 Contributions are welcome! Fork this repo, make improvements, and submit a pull request 🚀
 
-#📜 License
+## 📜 License
 
 This project is licensed under the MIT License – feel free to use and modify.
 
-#👨‍💻 Author
+## 👨‍💻 Author
 
 “With Tourista, travel smarter, plan better, and explore endlessly.”
