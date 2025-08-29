@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .form {
+      margin-bottom: 20px;
+    }
+
+    input {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .contact-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .contact-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9f9f9;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-width: 400px;
+    }
+
+    .delete-button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .delete-button:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Contact List</h1>
+  <div class="form">
+    <input id="name" type="text" placeholder="Name">
+    <input id="phone" type="text" placeholder="Phone Number">
+    <button onclick="addContact()">Add Contact</button>
+  </div>
+  <ul id="contactList" class="contact-list"></ul>
+
+  <script>
+    const contacts = [];
+
+    function addContact() {
+      const nameInput = document.getElementById('name');
+      const phoneInput = document.getElementById('phone');
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+
+      if (name && phone) {
+        const contact = { id: Date.now(), name, phone };
+        contacts.push(contact);
+        nameInput.value = '';
+        phoneInput.value = '';
+        renderContacts();
+      }
+    }
+
+    function deleteContact(id) {
+      const index = contacts.findIndex(contact => contact.id === id);
+      if (index !== -1) {
+        contacts.splice(index, 1);
+        renderContacts();
+      }
+    }
+
+    function renderContacts() {
+      const contactList = document.getElementById('contactList');
+      contactList.innerHTML = '';
+
+      contacts.forEach(contact => {
+        const li = document.createElement('li');
+        li.className = 'contact-item';
+
+        const span = document.createElement('span');
+        span.textContent = `${contact.name} - ${contact.phone}`;
+        
+        const button = document.createElement('button');
+        button.textContent = 'Delete';
+        button.className = 'delete-button';
+        button.onclick = () => deleteContact(contact.id);
+
+        li.appendChild(span);
+        li.appendChild(button);
+        contactList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourista: Itinerary Planner</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px #ddd;
+    }
+
+    /* Form Styles */
+    #itinerary-form {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      width: 100%;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #4caf50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+    }
+
+    button {
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #4caf50, #43a047);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #43a047, #388e3c);
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    /* Itinerary Container */
+    #itinerary-container {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .itinerary-item {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .itinerary-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .itinerary-details {
+      flex-grow: 1;
+      margin-right: 15px;
+    }
+
+    .place-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .place-details {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .delete-btn {
+      padding: 8px 12px;
+      background: linear-gradient(135deg, #f44336, #e53935);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .delete-btn:hover {
+      background: linear-gradient(135deg, #e53935, #d32f2f);
+      transform: scale(1.05);
+    }
+
+    .delete-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      #itinerary-form, #itinerary-container {
+        width: 90%;
+      }
+
+      .itinerary-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .delete-btn {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Itinerary Planner</h1>
+  <form id="itinerary-form">
+    <label for="place-name">Place Name:</label>
+    <input type="text" id="place-name" placeholder="Enter place name" required>
+    <label for="place-duration">Duration (hours):</label>
+    <input type="number" id="place-duration" placeholder="Enter duration" required>
+    <label for="place-details">Details:</label>
+    <input type="text" id="place-details" placeholder="Enter cultural or food details" required>
+    <button type="button" id="add-btn">Add to Itinerary</button>
+  </form>
+
+  <div id="itinerary-container"></div>
+
+  <script>
+    const form = document.getElementById('itinerary-form');
+    const addButton = document.getElementById('add-btn');
+    const itineraryContainer = document.getElementById('itinerary-container');
+
+    let itinerary = [];
+
+    // Add a new itinerary item
+    addButton.addEventListener('click', () => {
+      const placeName = document.getElementById('place-name').value;
+      const placeDuration = document.getElementById('place-duration').value;
+      const placeDetails = document.getElementById('place-details').value;
+
+      if (placeName && placeDuration && placeDetails) {
+        const newPlace = {
+          id: Date.now(),
+          name: placeName,
+          duration: placeDuration,
+          details: placeDetails,
+        };
+
+        itinerary.push(newPlace);
+        updateItineraryDisplay();
+        form.reset();
+      } else {
+        alert('Please fill in all fields!');
+      }
+    });
+
+    // Update the itinerary display
+    function updateItineraryDisplay() {
+      itineraryContainer.innerHTML = '';
+
+      itinerary.forEach((place) => {
+        const item = document.createElement('div');
+        item.className = 'itinerary-item';
+
+        const details = document.createElement('div');
+        details.className = 'itinerary-details';
+        details.innerHTML = `
+          <div class="place-name">${place.name}</div>
+          <div class="place-details">Duration: ${place.duration} hours</div>
+          <div class="place-details">Details: ${place.details}</div>
+        `;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-btn';
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => {
+          deletePlace(place.id);
+        };
+
+        item.appendChild(details);
+        item.appendChild(deleteButton);
+        itineraryContainer.appendChild(item);
+      });
+    }
+
+    // Delete an itinerary item
+    function deletePlace(id) {
+      itinerary = itinerary.filter((place) => place.id !== id);
+      updateItineraryDisplay();
+    }
+  </script>
+</body>
+</html>

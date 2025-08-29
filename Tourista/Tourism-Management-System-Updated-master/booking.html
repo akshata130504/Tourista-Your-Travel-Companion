@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tour Booking</title>
+    <link rel="stylesheet" type="text/css" href="css/booking.css">
+    <script>
+        // JavaScript validation function
+        function validateForm() {
+            if (isEmpty(document.getElementById('data_3').value.trim())) {
+                alert('First name is required!');
+                return false;
+            }
+            if (isEmpty(document.getElementById('data_4').value.trim())) {
+                alert('Last name is required!');
+                return false;
+            }
+            if (!validateEmail(document.getElementById('data_5').value.trim())) {
+                alert('Email must be a valid email address!');
+                return false;
+            }
+            return true;
+        }
+
+        // Helper functions for validation
+        function isEmpty(str) {
+            return (str.length == 0 || !str.trim());
+        }
+
+        function validateEmail(email) {
+            var re = /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+\.[a-z]{2,4}$/;
+            return isEmpty(email) || re.test(email);
+        }
+    </script>
+</head>
+<body>
+    <h1>Tour Booking</h1>
+    <div class="container">
+        <!-- Booking Form -->
+        <form method="POST" action="booking.php" name="form" onsubmit="return validateForm()">
+            <div class="textbox">
+                <input type="text" id="data_3" placeholder="First Name" name="ffirst" required>
+            </div>
+            <div class="textbox">
+                <input type="text" id="data_4" placeholder="Last Name" name="flast" required>
+            </div>
+            <!-- <div class="textbox">
+                <input type="email" id="data_5" placeholder="Email" name="femail" value="<?php echo $email; ?>" readonly required>
+            </div> -->
+            <div class="textbox">
+                <input type="text" placeholder="City" name="city" required>
+            </div>
+            <div class="textbox">
+                <input type="tel" placeholder="Phone" name="fphone" pattern="[0-9]{10}" title="Enter 10-digit phone number" required>
+            </div>
+            <div class="textbox">
+                <input type="text" placeholder="Destination" name="fdesti" required>
+            </div>
+            <div class="textbox">
+                <input type="date" placeholder="Date" name="fdate" required>
+            </div>
+            <div class="btn">
+                <input name="submit" value="Submit" type="submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

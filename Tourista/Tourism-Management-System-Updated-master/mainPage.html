@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style type="text/css">
+      .signup-op a{
+        text-decoration: none;
+        border: 2px solid #000;
+        background-color: rgba(68,241,154,1);
+        padding: 8px 20px;
+        color: black;
+        transition: 0.8s ease;
+      }
+      .signup-op a:hover{
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>   
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="front3.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="front2.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="front1.jpg" style="width:100%">
+        </div>
+        <div class="main">
+            <ul>
+              <ul class="list">
+                
+                  <li class="logo"><a href="mainPage.html"><img src="earth-globe.png" alt="Logo" style="width:36px;height:36px"></a></li>
+                  <div class="search">
+                    <form method="POST" action="info.php">
+                      <input type="text" name="search_p" placeholder="Search.." size="50">
+                  
+                      <input type="image" name="submit_p" src="search_icon.png" alt="Search image" style="width:22;height:22; margin-left: 60px; margin-top: 32px;">
+                    </form>
+                  </div>
+              </ul>
+              <ul class="list2">
+                <li class="active-menu"><a href="mainPage.html">Home</a></li>
+                <li><a id="long" href="destination.html">Destination</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="index.html">Logout</a></li>
+              </ul>
+            </ul>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+    </header>
+    <br>
+
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+    <div class="title">
+      <h1>Tourista Your Travel Companion</h1>
+      <!-- <div style="margin: 0px 35%;" class="signup-op">
+        <a href="signup.html">SignUp</a>
+        <a href="signin.html">SignIn</a>
+      </div> -->
+    </div>
+    <div class="contain">
+      <div class="heading">
+        <h2>Popular Destination</h2>
+      </div>
+      <div class="box">
+        <div class="imgBox">
+          <img src="images//destination//tajmahal1.jpg" alt="Taj Mahal Image" style="width: auto;height: 270px;">
+        </div>
+        <div class="name-text left1">
+          <h2>Taj Mahal</h2>
+          <a href="destination.html" class="btn">Visit</a>
+        </div>
+      </div>
+      <div class="box">
+        <div class="imgBox">
+          <img src="images//destination//ladakh1.jpg" alt="Taj Mahal Image" style="width: auto;height: 270px;">
+        </div>
+        <div class="name-text left2">
+          <h2>Ladakh</h2>
+          <a href="destination.html" class="btn">Visit</a>
+        </div>
+      </div>
+      <div class="box">
+        <div class="imgBox">
+          <img src="images//destination//kerala1.jpg" alt="Taj Mahal Image" style="width: auto;height: 270px;">
+        </div>
+        <div class="name-text left3">
+          <h2>Kerala</h2>
+          <a href="destination.html" class="btn">Visit</a>
+        </div>
+      </div>
+      <div class="box">
+        <div class="imgBox">
+          <img src="images//destination//goa1.jpg" alt="Taj Mahal Image" style="width: auto;height: 270px;">
+        </div>
+        <div class="name-text left4">
+          <h2>Goa</h2>
+          <a href="destination.html" class="btn">Visit</a>
+        </div>
+      </div>
+      <div class="destination-btn">
+        <a href="destination.html">View all</a>
+      </div>
+
+      <div id="itinerary-planner-icon" onclick="window.location.href='itineraryPlanner.html'">
+        <img src="iterinary_icon.jpeg" alt="Itinerary Planner Icon">
+      </div>
+      
+      <div id="chatbot-icon" onclick="toggleChatbot()">
+        <img src="icon2.jpeg" alt="Chatbot Icon" />
+      </div>
+    
+      <div class="chatbot-container hidden" id="chatbot-container">
+        <div class="chat-header">
+          <span>Coco, your travel buddy!</span>
+          <button id="close-button" onclick="toggleChatbot()">✖️</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <div class="bot-message">Hi there! I'm Coco 🐾, your travel buddy. How can I help you today?</div>
+        </div>
+        <div class="chat-footer">
+          <input type="text" id="user-input" placeholder="Ask me anything..." />
+          <button id="send-button">Send ✈️</button>
+        </div>
+      </div>
+    </div>
+   
+
+    <script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+    // Chatbot functionality
+const chatbotContainer = document.getElementById('chatbot-container');
+const chatBody = document.getElementById('chat-body');
+const userInput = document.getElementById('user-input');
+const sendButton = document.getElementById('send-button');
+
+// Keyword-based responses
+const keywordResponses = [
+  // General greetings
+  { 
+    keywords: ["hello", "hi", "hey"], 
+    response: "Hii! How can I assist you?" 
+  },
+  { 
+    keywords: ["bye", "goodbye", "see you"], 
+    response: "Goodbye! 🌏 Wishing you happy travels!" 
+  },
+  
+    // Mysore
+    {
+    keywords: ["mysore", "palace"],
+    response: "In Mysore, visit the Mysore Palace, Chamundi Hills, and Brindavan Gardens. For food, try Mysore Pak (a famous sweet), Masala Dosa, and Mysore Rasam! 😋"
+  },
+
+  // Goa
+  {
+    keywords: ["goa", "beach"],
+    response: "In Goa, explore Baga Beach, Fort Aguada, and the Basilica of Bom Jesus. Savor Goan Fish Curry, Prawn Balchao, Vindaloo, and Bebinca for dessert! 🏖️"
+  },
+
+  // Kerala
+  {
+    keywords: ["kerala", "backwaters"],
+    response: "In Kerala, enjoy the Alleppey backwaters, Munnar tea gardens, and Kovalam Beach. Relish Kerala Sadya (a vegetarian feast), Appam with Stew, and Puttu Kadala Curry! 🌴"
+  },
+
+  // Agra
+  {
+    keywords: ["agra", "taj mahal"],
+    response: "In Agra, visit the Taj Mahal, Agra Fort, and Mehtab Bagh. Don’t miss Mughlai food, Agra Petha (sweet), and Bedai Poori with Jalebi! 🕌"
+  },
+
+  // Ladakh
+  {
+    keywords: ["ladakh", "leh"],
+    response: "In Ladakh, visit Pangong Lake, Nubra Valley, and the Leh Palace. For food, try Thukpa (noodle soup), Momos, and Butter Tea for the cold weather! 🏔️"
+  },
+
+  // Hampi
+  {
+    keywords: ["hampi", "ruins"],
+    response: "In Hampi, explore the Vijaya Vittala Temple, Hampi Bazaar, and Matanga Hill. Don’t miss authentic Karnataka dishes like Bisi Bele Bath, Ragi Mudde, and Mysore Bondas! 🏛️"
+  },
+
+  // Rajasthan
+  {
+    keywords: ["rajasthan", "jaipur", "udaipur"],
+    response: "In Rajasthan, visit Jaipur's Hawa Mahal, Udaipur's Lake Palace, and Jodhpur's Mehrangarh Fort. Indulge in Dal Baati Churma, Laal Maas (spicy meat curry), and Ghevar (dessert)! 🏰"
+  },
+
+  // Manali
+  {
+    keywords: ["manali", "himachal"],
+    response: "In Manali, explore Solang Valley, Rohtang Pass, and Hidimba Devi Temple. Enjoy Siddu (steamed bread), Babru, and fresh Trout Fish Curry! ❄️"
+  },
+
+  // Amritsar
+  {
+    keywords: ["amritsar", "golden temple"],
+    response: "In Amritsar, visit the Golden Temple, Jallianwala Bagh, and Wagah Border. Treat yourself to Amritsari Kulcha, Sarson da Saag with Makki di Roti, and a glass of sweet Lassi! 🕉️"
+  },
+
+  // Srinagar
+  {
+    keywords: ["srinagar", "kashmir"],
+    response: "In Srinagar, enjoy Dal Lake's Shikara rides, Mughal Gardens, and Pari Mahal. Savor Rogan Josh, Yakhni, Dum Aloo, and Kashmiri Kahwa Tea! 🌸"
+  },
+
+  // India Gate (Delhi)
+  {
+    keywords: ["india gate", "delhi"],
+    response: "Near India Gate in Delhi, visit Rashtrapati Bhavan, and the National Museum. For food, enjoy Chole Bhature, Butter Chicken, and Parathas from Chandni Chowk! 🏛️"
+  },
+
+  // Shimoga (Jog Falls)
+  {
+    keywords: ["shimoga", "jog falls"],
+    response: "In Shimoga, visit Jog Falls, Agumbe, and the Lion Safari at Tyavarekoppa. Try local delicacies like Akki Roti (rice bread), Kaalu Saaru (lentil curry), and Chiroti (sweet)! 🌊"
+  },
+
+  // Travel tips for India
+  { 
+    keywords: ["travel tips", "advice"], 
+    response: "Travel Tip 🌟: Always carry a reusable water bottle and sunscreen. India has diverse climates, so pack accordingly!" 
+  },
+  { 
+    keywords: ["best time", "season"], 
+    response: "The best time to visit India is October to March. ❄️ Summers can be hot, but hill stations like Manali are ideal then!" 
+  },
+
+  // Booking and policies
+  { 
+    keywords: ["book", "booking", "reservation"], 
+    response: "You can book your tours to amazing Indian destinations on our Booking page. Let me know if you need help!" 
+  },
+  { 
+    keywords: ["cancel", "cancellation", "policy"], 
+    response: "Cancellations made 7 days in advance are eligible for a full refund. Contact support for more details." 
+  },
+
+  // Local attractions
+  { 
+    keywords: ["local attractions", "nearby places"], 
+    response: "Explore local attractions like the City Palace in Jaipur, Meenakshi Temple in Madurai, and the beaches of Kovalam." 
+  },
+
+  // Support and help
+  { 
+    keywords: ["help", "support", "contact"], 
+    response: "I'm here to help! For further assistance, contact us at support@tourista.com or call us at +91-800-TOURISTA." 
+  },
+
+  // Fun and engaging responses
+  { 
+    keywords: ["joke", "funny"], 
+    response: "Why don’t mountains ever get tired? 🏔️ Because they stay grounded! 😄" 
+  },
+  { 
+    keywords: ["recommend", "suggest"], 
+    response: "I recommend visiting Kerala's backwaters or trekking in Himachal Pradesh. Let me know your interests!" 
+  },
+];
+
+
+// Toggle chatbot visibility
+function toggleChatbot() {
+  chatbotContainer.classList.toggle('hidden');
+}
+
+// Add a message to the chat
+function addMessage(message, isBot = false) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = isBot ? 'bot-message' : 'user-message';
+  messageDiv.textContent = message;
+  chatBody.appendChild(messageDiv);
+  chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the latest message
+}
+
+// Find a response based on keywords
+function findResponse(userQuery) {
+  for (const entry of keywordResponses) {
+    for (const keyword of entry.keywords) {
+      if (userQuery.includes(keyword)) {
+        return entry.response;
+      }
+    }
+  }
+  return "I'm sorry, I didn't understand that. Could you please rephrase?";
+}
+
+// Handle user input
+function handleUserInput() {
+  const userQuery = userInput.value.trim().toLowerCase();
+  if (!userQuery) return;
+
+  // Display user message
+  addMessage(userQuery);
+  userInput.value = ''; // Clear input field
+
+  // Generate bot response
+  const botResponse = findResponse(userQuery);
+  setTimeout(() => addMessage(botResponse, true), 500); // Simulate bot typing delay
+}
+
+// Event listeners
+sendButton.addEventListener('click', handleUserInput);
+userInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') handleUserInput();
+});
+    </script>
+
+  </body>
+</html> 
